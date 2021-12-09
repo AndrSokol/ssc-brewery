@@ -9,12 +9,27 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest
-public class BeerControllerApiIT extends BaseIT {
-
+public class BeerControllerIT extends BaseIT {
 
     @Test
-    public void initCreationForm() throws Exception {
+    public void initCreationFormSpring() throws Exception {
+        mockMvc.perform(get("/beers/new").with(httpBasic("spring", "guru")))
+                .andExpect(status().isOk())
+                .andExpect(view().name("beers/createBeer"))
+                .andExpect(model().attributeExists("beer"));
+    }
+
+    @Test
+    public void initCreationFormUser() throws Exception {
         mockMvc.perform(get("/beers/new").with(httpBasic("user", "password")))
+                .andExpect(status().isOk())
+                .andExpect(view().name("beers/createBeer"))
+                .andExpect(model().attributeExists("beer"));
+    }
+
+    @Test
+    public void initCreationFormScott() throws Exception {
+        mockMvc.perform(get("/beers/new").with(httpBasic("scott", "tiger")))
                 .andExpect(status().isOk())
                 .andExpect(view().name("beers/createBeer"))
                 .andExpect(model().attributeExists("beer"));
