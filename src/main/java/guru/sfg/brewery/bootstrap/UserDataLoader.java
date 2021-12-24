@@ -1,7 +1,6 @@
 package guru.sfg.brewery.bootstrap;
 
 import guru.sfg.brewery.domain.security.Authority;
-import guru.sfg.brewery.domain.security.AuthorityEnum;
 import guru.sfg.brewery.domain.security.User;
 import guru.sfg.brewery.repositories.security.AuthorityRepository;
 import guru.sfg.brewery.repositories.security.UserRepository;
@@ -31,11 +30,11 @@ public class UserDataLoader implements CommandLineRunner {
 
     private void loadSecurityData() {
         Authority adminAuthority = authorityRepository
-                .save(Authority.builder().role(AuthorityEnum.ADMIN.name()).build());
+                .save(Authority.builder().role("ROLE_ADMIN").build());
         Authority userAuthority = authorityRepository
-                .save(Authority.builder().role(AuthorityEnum.USER.name()).build());
+                .save(Authority.builder().role("ROLE_USER").build());
         Authority customerAuthority = authorityRepository
-                .save(Authority.builder().role(AuthorityEnum.CUSTOMER.name()).build());
+                .save(Authority.builder().role("ROLE_CUSTOMER").build());
 
         User springGuruAdmin = User.builder()
                 .username("spring")
