@@ -101,7 +101,7 @@ public class BeerRestControllerIT extends BaseIT {
     }
 
     @Nested
-    @DisplayName("Find by Id")
+    @DisplayName("Get beer")
     class FindBeer {
         @ParameterizedTest(name = "#{index} with [{arguments}]")
         @MethodSource("guru.sfg.brewery.web.controllers.BeerRestControllerIT#getStreamAllUsers")
